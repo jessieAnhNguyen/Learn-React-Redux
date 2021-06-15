@@ -1,4 +1,12 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from "redux";
 import dataReducer from '../reducers/dataReducer'
+import createSagaMiddleware from "redux-saga";
+import { watchGetResponse } from '../sagas/dataSagas';
 
-export const store = createStore(dataReducer);
+const sagaMiddleware = createSagaMiddleware();
+
+const middleware = [sagaMiddleware];
+
+export const store = createStore(dataReducer, applyMiddleware(...middleware));
+
+sagaMiddleware.run(watchGetResponse);
