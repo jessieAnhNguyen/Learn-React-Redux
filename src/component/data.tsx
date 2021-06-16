@@ -2,7 +2,8 @@ import React, { ChangeEvent } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { changeUniName, getResponse } from '../actions/dataActions';
 import { DataState } from '../reducers/dataReducer';
-import { Button, Header, Input, Table } from 'semantic-ui-react';
+import { Button, Form, Header, Input, Label, Table } from 'semantic-ui-react';
+import './data.css';
 
 function Data() {
 
@@ -23,13 +24,17 @@ function Data() {
     };
     
     return (
-        <div>
-            <Header as='h3'>Fetch universities API and display data</Header>
-            <Input icon='search' placeholder='Search...' onChange={onChangeUniName} />
-            <p>Current university name is {uniName}</p>
-            {/* <div>
-                <button onClick={getAPI}>Go!</button>
-            </div> */}
+        <div id = "mainSection">
+            <Header as='h3' className="header2">Fetch universities API and display data</Header>
+            <Form>
+                <Form.Field>
+                    <Input type='text' icon='search' placeholder='Search...' onChange={onChangeUniName} />
+                    <Label pointing>Enter a university name</Label>
+                </Form.Field>
+            </Form>
+            
+            <p id="nameMessage">Current university name is {uniName}</p>
+        
             <Button primary onClick={getAPI}>Go!</Button>
             {/* <ol>
                 {
